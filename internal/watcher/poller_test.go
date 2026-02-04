@@ -79,15 +79,15 @@ func TestParseResponse(t *testing.T) {
 func TestFilterNewEvents(t *testing.T) {
 	p := NewPoller(PollerConfig{Repo: "owner/repo"})
 
-	t.Run("returns all events when no last seen ID", func(t *testing.T) {
+	t.Run("returns empty when no last seen ID (initial poll)", func(t *testing.T) {
 		events := []Event{
 			{ID: "3"},
 			{ID: "2"},
 			{ID: "1"},
 		}
 		result := p.filterNewEvents(events)
-		if len(result) != 3 {
-			t.Errorf("expected 3 events, got %d", len(result))
+		if len(result) != 0 {
+			t.Errorf("expected 0 events on initial poll, got %d", len(result))
 		}
 	})
 
