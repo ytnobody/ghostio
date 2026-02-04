@@ -164,7 +164,7 @@ func parseResponse(output []byte) (map[string]string, string) {
 // filterNewEvents returns only events newer than the last seen
 func (p *Poller) filterNewEvents(events []Event) []Event {
 	if p.lastSeenID == "" {
-		return events
+		return []Event{}
 	}
 
 	var newEvents []Event
